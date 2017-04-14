@@ -14,10 +14,9 @@ var categoryWhitelist = [
 	'xxx'
 ]
 
-test(function (t) {
+test('Gets torrent info when results are returned', function (t) {
 
 	search('ubuntu').then(function(torrents) {
-		console.log(torrents.length)
 
 		t.equal(torrents.length, 30)
 
@@ -42,7 +41,6 @@ test(function (t) {
 			t.ok(torrent.leech >= 0, 'positive number')
 
 			t.equal(typeof torrent.category, 'string', 'The torrent category is a string')
-			console.log('category: ' + torrent.category)
 			t.notEqual(categoryWhitelist.indexOf(torrent.category.toLowerCase()), -1, 'The cagegory is an expected category')
 
 			t.equal(typeof torrent.magnet, 'string', 'The torrent magnet is a string')
@@ -51,6 +49,16 @@ test(function (t) {
 			t.equal(typeof torrent.torrent, 'string', 'The torrent link is a string')
 			t.equal(torrent.torrent.slice(0, 19), 'https://kickass.cd/', 'looks like an https link')
 		})
+
+		t.end()
+	}, function (err) {
+		t.ifError(err)
+	})
+})
+
+test('Returns empty array when no results are returned', function (t) {
+	search('copper explain ill-fated truck neat unite branch educated tenuous hum').then(function (torrents) {
+		t.equal(torrents.length, 0)
 
 		t.end()
 	}, function (err) {

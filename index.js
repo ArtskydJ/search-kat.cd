@@ -7,9 +7,14 @@ var origin = 'https://kickass.cd'
 module.exports = function search(query) {
 	var path = '/usearch/' + encodeURIComponent(query) + '/'
 
-	return got(origin + path).then(function(response) {
+	return get(origin, path, 1)
+}
 
-		var $ = cheerio.load(response.body.toString())
+function get(origin, path, tryCount) {
+	return got(origin + path).then(function(response) {
+		var body = response.body.toString()
+
+		var $ = cheerio.load(body)
 
 		var tableRows = $('table#mainSearchTable table tr')
 
@@ -29,6 +34,11 @@ module.exports = function search(query) {
 				}
 			})
 			.get()
+
+		if (!torrents.length && tryCount < 3) {
+			// Sometimes kat will return an empty table, when there are results
+			return get(origin, path, tryCount + 1)
+		}
 
 		return torrents
 	})

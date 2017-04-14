@@ -1,6 +1,6 @@
 {
   "name": "search-kat.cd",
-  "version": "1.0.0",
+  "version": "",
   "description": "Search kickass.cd",
   "main": "index.js",
   "scripts": {
