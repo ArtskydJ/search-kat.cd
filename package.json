@@ -1,30 +1,25 @@
 {
-  "name": "search-kat.ph",
-  "version": "1.0.3",
-  "description": "Search kat.ph",
-  "main": "search.js",
+  "name": "search-kat.cd",
+  "version": "1.0.0",
+  "description": "Search kickass.cd",
+  "main": "index.js",
   "scripts": {
-    "test": "DEBUG=* ./node_modules/.bin/jasmine"
+    "test": "node test.js"
   },
-  "author": "Michael Leaney <leahcimic@gmail.com>",
-  "contributors": [
-    {
-      "name": "David Baldwynn",
-      "url": "https://github.com/whitef0x0"
-    }
-  ],
-  "license": "ISC",
+  "author": "Joseph Dykstra",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/leahciMic/search-kat.ph"
+    "url": "https://github.com/ArtskydJ/search-kat.cd"
   },
   "dependencies": {
-    "bluebird": "^2.9.24",
     "cheerio": "^0.19.0",
-    "debug": "^2.2.0",
-    "request": "^2.55.0"
+    "got": "^6.7.1"
   },
   "devDependencies": {
-    "jasmine": "^2.2.1"
+    "tape": "^4.6.3"
+  },
+  "engines": {
+    "node": ">=4"
   }
 }
